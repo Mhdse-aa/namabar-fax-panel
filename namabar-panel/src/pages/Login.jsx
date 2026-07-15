@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-// فرض بر این است که آیکون‌ها را دارید یا از یک کتابخانه مثل react-icons استفاده می‌کنید
-// در اینجا از متن ساده یا اموجی برای شبیه‌سازی آیکون اسکرین‌شات استفاده شده است
 
 const Login = () => {
   const [mobile, setMobile] = useState('');
@@ -18,7 +16,6 @@ const Login = () => {
       await login({ mobile: mobile.trim(), password });
       navigate('/dashboard', { replace: true });
     } catch (err) {
-      // پیامی که در اسکرین‌شات بود: "توکن استفاده از وب سرویس معتبر نمی باشد با پشتیبانی تماس بگیرید"
       setError(err.response?.data?.message || 'خطا در برقراری ارتباط با سرور');
     }
   };

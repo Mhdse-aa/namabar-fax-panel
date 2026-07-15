@@ -14,8 +14,8 @@ export default function AppRouter() {
 
       <Route element={<DashboardLayout />}>
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/faxes/inbox" element={<Inbox />} /> {/* مسیر دریافتی */}
-        <Route path="/faxes/sent" element={<Outbox />} />   {/* مسیر ارسالی */}
+        <Route path="/faxes/inbox" element={<Inbox />} />
+        <Route path="/faxes/sent" element={<Outbox />} />   
         <Route path="/faxes/send" element={<SendFax />} />
       </Route>
 
