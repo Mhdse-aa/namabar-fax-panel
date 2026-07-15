@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL,
+  baseURL: import.meta.env.VITE_API_BASE_URL || '/api',
   headers: {
     Accept: 'application/json',
   },
@@ -12,12 +12,15 @@ api.interceptors.request.use((config) => {
 
   const token = localStorage.getItem('token');
   const isLoginRequest = config.url?.includes('/auth/create-session');
-  const isFormData = typeof FormData !== 'undefined' && config.data instanceof FormData;
+  const isFormData =
+    typeof FormData !== 'undefined' && config.data instanceof FormData;
 
   config.headers['x-api-key'] = import.meta.env.VITE_API_KEY;
 
   if (token && !isLoginRequest) {
-    config.headers.Authorization = token;
+    config.headers.Authorization = token.startsWith('Bearer ')
+      ? token
+      : `Bearer ${token}`;
   } else {
     delete config.headers.Authorization;
   }

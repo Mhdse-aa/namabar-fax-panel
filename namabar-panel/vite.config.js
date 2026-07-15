@@ -5,11 +5,10 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api-proxy': {
-        target: 'https://api.namabar.com',
+      '/api': {
+        target: 'https://api.namabar.com/panel',
         changeOrigin: true,
-        secure: true,
-        rewrite: (path) => path.replace(/^\/api-proxy/, ''),
+        rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
   },
